@@ -28,6 +28,9 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+
+    // push
+    implementation("com.google.firebase:firebase-admin:9.2.0")
 }
 
 tasks.withType<KotlinCompile> {
