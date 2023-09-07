@@ -18,9 +18,9 @@ class FcmInfoEntity (
 
     @Basic
     @Column(name = "created_at", nullable = false)
-    val createdAt: LocalDateTime,
+    val createdAt: LocalDateTime = LocalDateTime.now(),
 
     @Basic
     @Column(name = "updated_at", nullable = false)
-    val updatedAt: LocalDateTime
+    val updatedAt: LocalDateTime = LocalDateTime.now()
 )
