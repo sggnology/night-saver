@@ -31,6 +31,10 @@ dependencies {
 
     // push
     implementation("com.google.firebase:firebase-admin:9.2.0")
+
+    // https://mvnrepository.com/artifact/com.google.guava/guava
+    implementation("com.google.guava:guava:32.1.2-jre")
+
 }
 
 tasks.withType<KotlinCompile> {
