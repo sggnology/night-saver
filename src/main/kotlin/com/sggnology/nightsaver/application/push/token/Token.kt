@@ -16,13 +16,15 @@ class Token(
             token
         )
 
-        fcmInfo?.let {
-            logger.info("fcmInfo: $fcmInfo, 토큰을 등록합니다.")
+        if (fcmInfo == null) {
+            logger.info("token: $token, 토큰을 등록합니다.")
             fcmInfoRepository.save(
                 FcmInfoEntity(
                     fcmToken = token
                 )
             )
-        } ?: logger.info("fcmInfo: $fcmInfo, 토큰이 이미 등록되어 있습니다.")
+        } else {
+            logger.info("fcmInfo: $fcmInfo, 토큰이 이미 등록되어 있습니다.")
+        }
     }
 }
