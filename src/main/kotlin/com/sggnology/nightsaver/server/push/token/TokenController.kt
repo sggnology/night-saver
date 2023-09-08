@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/push/token")
+@RequestMapping("/api/v1/token")
 @Tag(name = "토큰 API", description = "토큰 관리는 여기서 합니다.")
 class TokenController(
     private val tokenRegisterService: TokenRegisterService
