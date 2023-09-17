@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 plugins {
     id("org.springframework.boot") version "3.1.3"
@@ -7,6 +8,8 @@ plugins {
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
 }
+
+val buildImageName = "night-saver-api"
 
 group = "com.sggnology"
 version = "0.0.1-SNAPSHOT"
@@ -51,4 +54,8 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.withType<BootBuildImage>{
+    imageName=buildImageName
 }
