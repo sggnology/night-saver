@@ -5,7 +5,7 @@ import java.sql.Timestamp
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "fcm_info", schema = "night_saver", catalog = "")
+@Table(name = "fcm_info", schema = "night-saver", catalog = "")
 class FcmInfoEntity (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
