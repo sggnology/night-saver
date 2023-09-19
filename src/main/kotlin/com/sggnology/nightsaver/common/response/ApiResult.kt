@@ -12,6 +12,14 @@ class ApiResult<T>(
     val code: Int = httpStatusCode.value()
 
     companion object{
+
+        fun <T> success(result: T): ApiResult<T>{
+            return ApiResult(
+                httpStatusCode = HttpStatus.OK,
+                data = result
+            )
+        }
+
         fun fail(): ApiResult<Nothing>{
             return ApiResult(
                 httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR,
