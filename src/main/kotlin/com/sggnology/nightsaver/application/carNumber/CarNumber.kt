@@ -8,7 +8,10 @@ import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
+import org.springframework.util.LinkedMultiValueMap
+import org.springframework.util.MultiValueMap
 import org.springframework.web.client.RestTemplate
+
 
 class CarNumber(
     private val restTemplate: RestTemplate
@@ -20,15 +23,16 @@ class CarNumber(
 
         val path = "/image/car-number"
 
-        val headers = HttpHeaders()
-        headers.contentType = MediaType.MULTIPART_FORM_DATA
-
-        val body = carNumberImageReqDto.toCarNumberImageServerReqDto()
-
-        val httpEntity = HttpEntity(body, headers)
-
         try {
-            val responseEntity = restTemplate.exchange(path, HttpMethod.POST, httpEntity, CarNumberImageServerResDto::class.java)
+            val body: MultiValueMap<String, Any> = LinkedMultiValueMap()
+            body.add("image", carNumberImageReqDto.carNumberImageFile.resource)
+
+            val headers = HttpHeaders()
+            headers.contentType = MediaType.MULTIPART_FORM_DATA
+
+            val requestEntity = HttpEntity(body, headers)
+
+            val responseEntity = restTemplate.exchange(path, HttpMethod.POST, requestEntity, CarNumberImageServerResDto::class.java)
 
             val result = responseEntity.body ?: CarNumberImageServerResDto()
 
