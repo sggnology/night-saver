@@ -1,5 +1,6 @@
 package com.sggnology.nightsaver.server.AHello.controller
 
+import com.sggnology.nightsaver.auth.JwtAuthProvider
 import com.sggnology.nightsaver.component.push.message.dto.FcmMessageDto
 import com.sggnology.nightsaver.component.push.send.FcmSender
 import com.sggnology.nightsaver.exception.NotDefinedException
@@ -14,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/hello")
 @Tag(name = "테스트 API", description = "통합 테스트시 잠깐잠깐 사용합니다.")
 class AHelloController(
-    private val fcmSender: FcmSender
+    private val fcmSender: FcmSender,
+    private val jwtAuthProvider: JwtAuthProvider
 ) {
 
     @Operation(summary = "예외 컨트롤러 동작 테스트")
     @GetMapping("/exception")
-    fun exceptionTest(){
+    fun exceptionTest() {
         throw NotDefinedException()
     }
 
@@ -28,7 +30,12 @@ class AHelloController(
     fun testSendNotification(
         title: String,
         token: String
-    ){
+    ) {
         fcmSender.sendMulticastAsync(FcmMessageDto(title, tokens = listOf(token)))
+    }
+
+    @GetMapping("/generate/jwtToken")
+    fun generateTestJwtToken(): String {
+        return jwtAuthProvider.createJwtToken(1L)
     }
 }
