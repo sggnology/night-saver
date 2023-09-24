@@ -27,5 +27,13 @@ class ApiResult<T>(
                 data = null
             )
         }
+
+        fun fail(errStatus: HttpStatus, errMsg: String): ApiResult<Nothing>{
+            return ApiResult(
+                httpStatusCode = errStatus,
+                message = errMsg,
+                data = null
+            )
+        }
     }
 }
