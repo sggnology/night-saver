@@ -9,7 +9,7 @@ plugins {
     kotlin("plugin.jpa") version "1.8.22"
 }
 
-val buildImageName = "night-saver-api"
+val buildImageName = "sggnology/night-saver-api"
 
 group = "com.sggnology"
 version = "0.0.1-SNAPSHOT"
