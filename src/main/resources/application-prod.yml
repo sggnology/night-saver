@@ -9,3 +9,12 @@ sub:
   server:
     night-saver-image-server:
       host: http://192.168.45.194:55003
+
+springdoc:
+  swagger-ui:
+    enabled: false
+
+auth:
+  jwt:
+    secret-key: gkdnfdlrnldudnjwlsWksjehdkfwlabc
+    expire-seconds: 3600000
