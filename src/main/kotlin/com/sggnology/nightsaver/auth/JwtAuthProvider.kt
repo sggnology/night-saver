@@ -12,6 +12,8 @@ import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.annotation.PostConstruct
@@ -46,9 +48,13 @@ class JwtAuthProvider {
         val claims = Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).body
         val userId = claims.subject
 
-        val user = User(userId, "", listOf())
+        val user = User(userId, "", listOf(getUserRole()))
 
         return UsernamePasswordAuthenticationToken(user, null, user.authorities)
+    }
+
+    private fun getUserRole(): GrantedAuthority{
+        return SimpleGrantedAuthority("USER")
     }
 
     fun getUserIdFromJwtToken(token: String): Long {
