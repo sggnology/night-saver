@@ -13,7 +13,7 @@ class PushConfig {
 
     @PostConstruct
     fun init() {
-        val serviceAccount = ClassPathResource("firebase/night-saver-firebase-adminsdk-pnxus-fa234acf08.json").inputStream
+        val serviceAccount = ClassPathResource("config/fcm.json").inputStream
 
         val options = FirebaseOptions.builder()
             .setCredentials(GoogleCredentials.fromStream(serviceAccount))
