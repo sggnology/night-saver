@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:13306/night-saver?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://192.168.45.194:13306/night-saver?useSSL=false&serverTimezone=UTC
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
