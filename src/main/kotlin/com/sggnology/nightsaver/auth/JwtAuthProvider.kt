@@ -36,7 +36,7 @@ class JwtAuthProvider {
         jwtSecret = Keys.hmacShaKeyFor(jwtSecretKey.toByteArray())
     }
 
-    fun createJwtToken(userId: Long): String {
+    fun createJwtToken(userId: Int): String {
         return Jwts.builder()
             .setSubject(userId.toString())
             .setExpiration(Date(System.currentTimeMillis() + JWT_EXPIRE_SECONDS))
@@ -57,14 +57,14 @@ class JwtAuthProvider {
         return SimpleGrantedAuthority("USER")
     }
 
-    fun getUserIdFromJwtToken(token: String): Long {
+    fun getUserIdFromJwtToken(token: String): Int {
         return Jwts.parserBuilder()
             .setSigningKey(jwtSecret)
             .build()
             .parseClaimsJws(token)
             .body
             .subject
-            .toLong()
+            .toInt()
     }
 
     fun validateToken(token: String) {
