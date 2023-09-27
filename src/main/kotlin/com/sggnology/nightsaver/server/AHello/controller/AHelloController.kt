@@ -36,6 +36,6 @@ class AHelloController(
 
     @GetMapping("/generate/jwt-token")
     fun generateTestJwtToken(): String {
-        return jwtAuthProvider.createJwtToken(1L)
+        return jwtAuthProvider.createJwtToken(1)
     }
 }
