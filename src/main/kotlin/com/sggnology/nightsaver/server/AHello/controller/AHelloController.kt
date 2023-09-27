@@ -26,7 +26,7 @@ class AHelloController(
     }
 
     @Operation(summary = "푸시 알림 전송 테스트")
-    @PostMapping("/testSendNotification")
+    @PostMapping("/test-send-notification")
     fun testSendNotification(
         title: String,
         token: String
@@ -34,7 +34,7 @@ class AHelloController(
         fcmSender.sendMulticastAsync(FcmMessageDto(title, tokens = listOf(token)))
     }
 
-    @GetMapping("/generate/jwtToken")
+    @GetMapping("/generate/jwt-token")
     fun generateTestJwtToken(): String {
         return jwtAuthProvider.createJwtToken(1L)
     }
