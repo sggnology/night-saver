@@ -1,4 +1,4 @@
-package com.sggnology.nightsaver.server.AHello.controller
+package com.sggnology.nightsaver.server.aaHello.controller
 
 import com.sggnology.nightsaver.auth.JwtAuthProvider
 import com.sggnology.nightsaver.component.push.message.dto.FcmMessageDto
