@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotEmpty
 
 data class SignupReqDto(
     @field:NotEmpty(message = "이메일을 입력해주세요.")
-    val userId: String,
+    val userEmail: String,
     @field:NotEmpty(message = "비밀번호를 입력해주세요.")
     val password: String,
     val nickName: String? = null,
