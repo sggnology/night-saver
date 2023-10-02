@@ -1,5 +1,6 @@
 package com.sggnology.nightsaver.server.aaHello.controller
 
+import com.sggnology.nightsaver.application.email.EmailSender
 import com.sggnology.nightsaver.auth.JwtAuthProvider
 import com.sggnology.nightsaver.component.push.message.dto.FcmMessageDto
 import com.sggnology.nightsaver.component.push.send.FcmSender
@@ -16,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController
 @Tag(name = "테스트 API", description = "통합 테스트시 잠깐잠깐 사용합니다.")
 class AHelloController(
     private val fcmSender: FcmSender,
-    private val jwtAuthProvider: JwtAuthProvider
+    private val jwtAuthProvider: JwtAuthProvider,
+    private val emailSender: EmailSender
 ) {
 
     @Operation(summary = "예외 컨트롤러 동작 테스트")
@@ -37,5 +39,10 @@ class AHelloController(
     @GetMapping("/generate/jwt-token")
     fun generateTestJwtToken(): String {
         return jwtAuthProvider.createJwtToken(1)
+    }
+
+    @GetMapping("/send-email")
+    fun sendTestEmail() {
+        emailSender.send()
     }
 }
