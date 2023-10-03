@@ -6,7 +6,7 @@ class CodeGenerator {
 
         private val DEFAULT_CODE_LENGTH = 6
 
-        fun create(
+        fun generate(
             length: Int = DEFAULT_CODE_LENGTH,
             codeType: CodeType = CodeType.NUMERIC
         ): String {

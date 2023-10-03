@@ -50,7 +50,7 @@ class AHelloController(
             "sggnology@gmail.com",
             "테스트 이메일",
             mapOf(
-                "code" to CodeGenerator.create(6)
+                "code" to CodeGenerator.generate(6)
             )
         )
     }
