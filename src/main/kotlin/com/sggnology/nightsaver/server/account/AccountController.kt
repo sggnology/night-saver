@@ -21,7 +21,7 @@ class AccountController(
         userEmail: String
     ): ApiResult<Boolean> {
         return ApiResult.success(
-            accountDuplicationService.check(userEmail)
+            accountDuplicationService.isDuplicated(userEmail)
         )
     }
 }

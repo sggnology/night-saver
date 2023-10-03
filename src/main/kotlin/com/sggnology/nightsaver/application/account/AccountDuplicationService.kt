@@ -8,5 +8,5 @@ class AccountDuplicationService(
     private val userInfoRepository: UserInfoRepository
 ) {
 
-    fun check(userEmail: String): Boolean = userInfoRepository.findByUserEmail(userEmail) != null
+    fun isDuplicated(userEmail: String): Boolean = userInfoRepository.findByUserEmail(userEmail) != null
 }
