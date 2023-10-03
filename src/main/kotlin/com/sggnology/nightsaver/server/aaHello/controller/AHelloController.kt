@@ -1,10 +1,12 @@
 package com.sggnology.nightsaver.server.aaHello.controller
 
-import com.sggnology.nightsaver.application.email.EmailSender
+import com.sggnology.nightsaver.component.email.EmailSender
 import com.sggnology.nightsaver.auth.JwtAuthProvider
+import com.sggnology.nightsaver.component.email.generate.EmailGeneratorUsingViewFactory
 import com.sggnology.nightsaver.component.push.message.dto.FcmMessageDto
 import com.sggnology.nightsaver.component.push.send.FcmSender
 import com.sggnology.nightsaver.exception.NotDefinedException
+import com.sggnology.nightsaver.util.code.CodeGenerator
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping
@@ -43,6 +45,13 @@ class AHelloController(
 
     @GetMapping("/send-email")
     fun sendTestEmail() {
-        emailSender.send()
+        emailSender.send(
+            EmailGeneratorUsingViewFactory.Companion.EmailGeneratorType.SIGNUP_CERTIFICATION_CODE,
+            "sggnology@gmail.com",
+            "테스트 이메일",
+            mapOf(
+                "code" to CodeGenerator.create(6)
+            )
+        )
     }
 }
