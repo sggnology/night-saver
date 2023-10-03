@@ -12,11 +12,11 @@ class UserSignupCertificationLogInfoEntity {
     var userLoginStatusId = 0
 
     @Basic
-    @Column(name = "user_email")
+    @Column(name = "user_email", nullable = false)
     lateinit var userEmail: String
 
     @Basic
-    @Column(name = "certification_text")
+    @Column(name = "certification_text", nullable = false)
     lateinit var certificationText: String
 
     @Basic
