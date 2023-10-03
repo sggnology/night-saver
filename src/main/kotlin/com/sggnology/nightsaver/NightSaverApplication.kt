@@ -7,8 +7,10 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.security.SecurityScheme
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.scheduling.annotation.EnableAsync
 
 @SpringBootApplication
+@EnableAsync
 @OpenAPIDefinition(
     info = io.swagger.v3.oas.annotations.info.Info(
         title = "Night Saver Server",
