@@ -14,7 +14,7 @@ class UserSignupStatusInfoEntity {
 
     @Basic
     @Column(name = "user_id")
-    var userId = 0
+    var userId: Int = 0
 
     @Basic
     @Column(name = "signup_st")
@@ -24,7 +24,7 @@ class UserSignupStatusInfoEntity {
     @Column(name = "created_at")
     var createdAt: LocalDateTime = LocalDateTime.now()
 
-    @ManyToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false, insertable = false, updatable = false)
     lateinit var userInfoByUserId: UserInfoEntity
 }
