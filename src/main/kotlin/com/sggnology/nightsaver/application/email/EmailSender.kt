@@ -1,6 +1,7 @@
 package com.sggnology.nightsaver.application.email
 
 import org.springframework.mail.javamail.JavaMailSender
+import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
 
 /**
@@ -19,6 +20,7 @@ class EmailSender(
 
     private val emailGenerator = EmailGenerator()
 
+    @Async(value = "EMAIL_HANDLER_TASK_EXECUTOR")
     fun send() {
         javaMailSender.send(emailGenerator.generate())
     }
