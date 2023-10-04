@@ -1,6 +1,5 @@
 package com.sggnology.nightsaver.server.certification
 
-import com.sggnology.nightsaver.application.account.AccountDuplicationService
 import com.sggnology.nightsaver.application.certification.CertificateSignupService
 import com.sggnology.nightsaver.application.signup.dto.req.SignupCertificationReqDto
 import com.sggnology.nightsaver.extension.customAssert
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/v1/certification")
 @Tag(name = "인증", description = "인증 관련 API")
 class CertificationController(
-    private val accountDuplicationService: AccountDuplicationService,
     private val certificateSignupService: CertificateSignupService
 ) {
 
@@ -23,7 +21,6 @@ class CertificationController(
     fun requestCertificationCode(
         userEmail: String
     ) {
-        customAssert(!accountDuplicationService.isDuplicated(userEmail), "아이디 중복 여부를 확인해주세요.")
         certificateSignupService.sendCodeTo(userEmail)
         logger.info("mail : $userEmail, code : ${certificateSignupService.getCode(userEmail)}, 회원가입 인증 코드 전송 완료")
     }
