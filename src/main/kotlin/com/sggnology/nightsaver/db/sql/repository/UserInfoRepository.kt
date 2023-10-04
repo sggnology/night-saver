@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface UserInfoRepository: JpaRepository<UserInfoEntity, Int> {
     fun findByUserEmail(userEmail: String): UserInfoEntity?
+    fun findByUserNick(userNick: String): UserInfoEntity?
 }
