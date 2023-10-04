@@ -1,6 +1,7 @@
 package com.sggnology.nightsaver.application.signup.dto.req
 
 import jakarta.validation.constraints.NotEmpty
+import jakarta.validation.constraints.Pattern
 
 data class SignupReqDto(
     @field:NotEmpty(message = "이메일을 입력해주세요.")
@@ -9,5 +10,6 @@ data class SignupReqDto(
     val password: String,
     @field:NotEmpty(message = "확인 비밀번호를 입력해주세요.")
     val passwordConfirm: String,
+    @field:Pattern(regexp = "^[가-힣a-zA-Z0-9]{2,10}$", message = "닉네임은 한글, 영문, 숫자로 2~10자리로 입력해주세요.")
     val nickName: String? = null,
 )
