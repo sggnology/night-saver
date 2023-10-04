@@ -27,7 +27,7 @@ class SignupController(
         @Valid @RequestBody signupReqDto: SignupReqDto
     ) {
         customAssert(signupReqDto.password == signupReqDto.passwordConfirm, "비밀번호가 일치하지 않습니다.")
-        customAssert(!accountDuplicationService.isUserNickDuplicated(signupReqDto.userEmail), "이미 존재하는 이메일입니다.")
+        customAssert(!accountDuplicationService.isUserNickDuplicated(signupReqDto.userEmail), "이미 존재하는 닉네임입니다.")
         signupService.signup(signupReqDto)
     }
 }
