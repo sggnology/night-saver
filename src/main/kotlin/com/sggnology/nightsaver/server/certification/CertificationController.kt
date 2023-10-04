@@ -6,6 +6,7 @@ import com.sggnology.nightsaver.application.signup.dto.req.SignupCertificationRe
 import com.sggnology.nightsaver.extension.customAssert
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
+import logger
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -23,6 +24,7 @@ class CertificationController(
     ) {
         customAssert(!accountDuplicationService.isDuplicated(userEmail), "아이디 중복 여부를 확인해주세요.")
         certificateSignupService.sendCodeTo(userEmail)
+        logger.info("mail : $userEmail, code : ${certificateSignupService.getCode(userEmail)}, 회원가입 인증 코드 전송 완료")
     }
 
     @Operation(summary = "회원가입 인증 코드 검증")
@@ -30,6 +32,7 @@ class CertificationController(
     fun certificateCode(
         @RequestBody signupCertificationReqDto: SignupCertificationReqDto
     ) {
-
+        val code = certificateSignupService.getCode(signupCertificationReqDto.userEmail)
+        customAssert(code == signupCertificationReqDto.certificationCode, "인증 코드가 일치하지 않습니다.")
     }
 }
