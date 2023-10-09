@@ -13,18 +13,18 @@ class UserPwLostLogInfoEntity {
     var userPwLostLogId = 0
 
     @Basic
-    @Column(name = "user_id")
-    var userId = 0
+    @Column(name = "user_email")
+    lateinit var userEmail: String
 
     @Basic
-    @Column(name = "certificate_text")
-    lateinit var certificateText: String
+    @Column(name = "certification_text")
+    lateinit var certificationText: String
+
+    @Basic
+    @Column(name = "certificated_yn")
+    var certificatedYn: String = "N"
 
     @Basic
     @Column(name = "created_at")
     var createdAt: LocalDateTime = LocalDateTime.now()
-    
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false, insertable = false, updatable = false)
-    lateinit var userInfoByUserId: UserInfoEntity
 }
