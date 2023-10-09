@@ -25,10 +25,16 @@ class EmailGeneratorUsingViewFactory {
         private fun initialize(springTemplateEngine: SpringTemplateEngine) {
             emailGeneratorMap[EmailGeneratorType.SIGNUP_CERTIFICATION_CODE] =
                 SignupCertificationCodeEmailGeneratorUsingView(springTemplateEngine)
+            emailGeneratorMap[EmailGeneratorType.ACCOUNT_LOST_PASSWORD_CERTIFICATION_CODE] =
+                AccountLostPasswordCertificationCodeEmailGeneratorUsingView(springTemplateEngine)
+            emailGeneratorMap[EmailGeneratorType.ACCOUNT_RE_ISSUE_LOST_PASSWORD] =
+                AccountReIssuePasswordEmailGeneratorUsingView(springTemplateEngine)
         }
 
         enum class EmailGeneratorType {
-            SIGNUP_CERTIFICATION_CODE
+            SIGNUP_CERTIFICATION_CODE,
+            ACCOUNT_LOST_PASSWORD_CERTIFICATION_CODE,
+            ACCOUNT_RE_ISSUE_LOST_PASSWORD,
         }
     }
 }
