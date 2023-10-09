@@ -20,6 +20,13 @@ class ApiResult<T>(
             )
         }
 
+        fun success(): ApiResult<Nothing>{
+            return ApiResult(
+                httpStatusCode = HttpStatus.OK,
+                data = null
+            )
+        }
+
         fun fail(): ApiResult<Nothing>{
             return ApiResult(
                 httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR,
