@@ -2,19 +2,24 @@ package com.sggnology.nightsaver.application.push.token.register
 
 import com.sggnology.nightsaver.application.push.token.Token
 import com.sggnology.nightsaver.application.push.token.register.dto.TokenRegisterReqDto
-import com.sggnology.nightsaver.db.sql.repository.FcmInfoRepository
+import com.sggnology.nightsaver.db.sql.entity.UserInfoEntity
+import com.sggnology.nightsaver.db.sql.repository.UserInfoRepository
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
 class TokenRegisterService(
-    private val fcmInfoRepository: FcmInfoRepository
+    private val userInfoRepository: UserInfoRepository
 ) {
 
-    fun register(tokenRegisterReqDto: TokenRegisterReqDto){
+    @Transactional
+    fun register(user: UserInfoEntity, tokenRegisterReqDto: TokenRegisterReqDto){
         val token = Token(tokenRegisterReqDto.token)
 
         token.register(
-            fcmInfoRepository = fcmInfoRepository,
+            user = user,
         )
+
+        userInfoRepository.save(user)
     }
 }

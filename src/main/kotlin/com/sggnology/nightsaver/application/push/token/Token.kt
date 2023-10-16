@@ -1,6 +1,7 @@
 package com.sggnology.nightsaver.application.push.token
 
 import com.sggnology.nightsaver.db.sql.entity.FcmInfoEntity
+import com.sggnology.nightsaver.db.sql.entity.UserInfoEntity
 import com.sggnology.nightsaver.db.sql.repository.FcmInfoRepository
 import logger
 
@@ -9,22 +10,19 @@ class Token(
 ) {
 
     fun register(
-        fcmInfoRepository: FcmInfoRepository,
+        user: UserInfoEntity,
     ) {
 
-        val fcmInfo = fcmInfoRepository.findByFcmToken(
-            token
-        )
-
-        if (fcmInfo == null) {
-            logger.info("token: $token, 토큰을 등록합니다.")
-            fcmInfoRepository.save(
-                FcmInfoEntity(
-                    fcmToken = token
-                )
-            )
-        } else {
-            logger.info("fcmInfo: $fcmInfo, 토큰이 이미 등록되어 있습니다.")
+        if(user.fcmInfoEntity == null){
+            logger.info("user: ${user.userEmail}, 토큰을 등록합니다.")
+            user.fcmInfoEntity = FcmInfoEntity().apply {
+                this.userId = user.userId
+                this.fcmToken = token
+            }
+        }
+        else{
+            logger.info("user: ${user.userEmail}, 토큰을 갱신합니다.")
+            user.fcmInfoEntity!!.fcmToken = token
         }
     }
 }
