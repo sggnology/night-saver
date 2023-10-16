@@ -72,4 +72,5 @@ tasks.withType<Test> {
 
 tasks.withType<BootBuildImage>{
     imageName=buildImageName
+    createdDate = "now"
 }
