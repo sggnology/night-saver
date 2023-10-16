@@ -32,6 +32,6 @@ class UserInfoEntity {
     @Column(name = "updated_at")
     var updatedAt: LocalDateTime = LocalDateTime.now()
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "userInfoEntity")
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST], mappedBy = "userInfoEntity")
     var fcmInfoEntity: FcmInfoEntity? = null
 }
