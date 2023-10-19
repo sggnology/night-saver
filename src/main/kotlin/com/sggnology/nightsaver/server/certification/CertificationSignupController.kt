@@ -3,6 +3,7 @@ package com.sggnology.nightsaver.server.certification
 import com.sggnology.nightsaver.application.certification.CertificateSignupService
 import com.sggnology.nightsaver.application.signup.dto.req.SignupCertificationReqDto
 import com.sggnology.nightsaver.common.response.ApiResult
+import com.sggnology.nightsaver.db.sql.repository.UserInfoRepository
 import com.sggnology.nightsaver.extension.customAssert
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*
 @Validated
 @Tag(name = "인증", description = "인증 관련 API")
 class CertificationSignupController(
+    private val userInfoRepository: UserInfoRepository,
     private val certificateSignupService: CertificateSignupService
 ) {
 
@@ -28,6 +30,7 @@ class CertificationSignupController(
         @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}\$", message = "이메일 형식이 올바르지 않습니다.")
         userEmail: String
     ): ApiResult<Nothing> {
+        customAssert(userInfoRepository.findByUserEmail(userEmail) == null, "이미 존재하는 이메일입니다.")
         certificateSignupService.sendCodeTo(userEmail)
         logger.info("mail : $userEmail, code : ${certificateSignupService.getCode(userEmail)}, 회원가입 인증 코드 전송 완료")
         return ApiResult.success()
