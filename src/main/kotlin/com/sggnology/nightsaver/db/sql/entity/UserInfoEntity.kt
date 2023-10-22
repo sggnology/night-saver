@@ -34,4 +34,8 @@ class UserInfoEntity {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST], mappedBy = "userInfoEntity")
     var fcmInfoEntity: FcmInfoEntity? = null
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reporter_user_idx")
+    var carPlateReportLogInfoEntityList: List<CarPlateReportLogInfoEntity> = mutableListOf()
 }
