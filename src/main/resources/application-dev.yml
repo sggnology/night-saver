@@ -4,6 +4,10 @@ spring:
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    properties:
+#      hibernate:
+#        format_sql: true
 
 sub:
   server:
@@ -14,3 +18,8 @@ auth:
   jwt:
     secret-key: gkdnfdlrnldudnjwlsWksjehdkfwlabc
     expire-seconds: 3600000
+
+#logging:
+#  level:
+#    org.hibernate.SQL: debug
+#    org.hibernate.orm.jdbc.bind: trace
