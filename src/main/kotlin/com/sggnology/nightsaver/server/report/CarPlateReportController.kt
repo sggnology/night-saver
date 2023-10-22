@@ -1,6 +1,6 @@
 package com.sggnology.nightsaver.server.report
 
-import com.sggnology.nightsaver.application.report.CarPlateReportService
+import com.sggnology.nightsaver.application.report.carPlate.CarPlateReportService
 import com.sggnology.nightsaver.common.response.ApiResult
 import com.sggnology.nightsaver.db.sql.entity.UserInfoEntity
 import com.sggnology.nightsaver.resolver.annotation.UserInfo

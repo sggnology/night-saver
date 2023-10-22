@@ -1,4 +1,4 @@
-package com.sggnology.nightsaver.application.report
+package com.sggnology.nightsaver.application.report.carPlate
 
 import com.sggnology.nightsaver.db.sql.entity.UserInfoEntity
 import com.sggnology.nightsaver.db.sql.repository.CarPlateReportLogInfoRepository
