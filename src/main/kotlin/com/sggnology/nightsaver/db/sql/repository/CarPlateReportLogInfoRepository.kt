@@ -8,7 +8,8 @@ interface CarPlateReportLogInfoRepository: JpaRepository<CarPlateReportLogInfoEn
 
     @Query("""
         select cprli from CarPlateReportLogInfoEntity cprli
+        where cprli.carPlate = :carPlate
         order by cprli.createdAt desc limit 1
     """)
-    fun getLastCarPlateReportLog(): CarPlateReportLogInfoEntity?
+    fun getLastCarPlateReportLog(carPlate: String): CarPlateReportLogInfoEntity?
 }

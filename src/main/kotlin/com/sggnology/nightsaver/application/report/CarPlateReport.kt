@@ -19,7 +19,9 @@ class CarPlateReport(
 
         val standardTime = LocalDateTime.now().minusMinutes(REPORT_LOG_RETENTION_PERIOD)
 
-        val lastReportedAt = carPlateReportLogInfoRepository.getLastCarPlateReportLog()?.createdAt
+        val lastReportedAt = carPlateReportLogInfoRepository.getLastCarPlateReportLog(
+            carPlate = carPlate
+        )?.createdAt
 
         if (lastReportedAt != null && lastReportedAt.isAfter(standardTime)) {
             throw TimeExpiredException(
