@@ -1,7 +1,6 @@
 package com.sggnology.nightsaver.db.sql.entity
 
 import jakarta.persistence.*
-import java.sql.Timestamp
 import java.time.LocalDateTime
 
 @Entity
@@ -35,7 +34,7 @@ class UserInfoEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST], mappedBy = "userInfoEntity")
     var fcmInfoEntity: FcmInfoEntity? = null
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinColumn(name = "reporter_user_idx")
-    var carPlateReportLogInfoEntityList: List<CarPlateReportLogInfoEntity> = mutableListOf()
+    var carPlateReportLogInfoEntityList: MutableList<CarPlateReportLogInfoEntity> = mutableListOf()
 }
