@@ -25,7 +25,11 @@ class CarPlateReport(
 
         if (lastReportedAt != null && lastReportedAt.isAfter(standardTime)) {
             throw TimeExpiredException(
-                errMsg = "${REPORT_LOG_RETENTION_PERIOD}분 이내에 신고한 기록이 있습니다. 5분 뒤에 시도해주세요."
+                errMsg = """
+                   차량번호 ${carPlate} 에 대해
+                    ${REPORT_LOG_RETENTION_PERIOD}분 이내에 신고한 기록이 있습니다.
+                   5분 뒤에 시도해주세요. 
+                """.trimIndent()
             )
         }
 
