@@ -13,9 +13,11 @@ class WebConfig(
 
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
-            .allowedOrigins("*")
+            .allowedOrigins("http://localhost:3000", "https://night-saver.sggnology.com")
             .allowedMethods("*")
+//            .allowedHeaders("Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization")
             .allowedHeaders("*")
+            .allowCredentials(true)
     }
 
     override fun addArgumentResolvers(resolvers: MutableList<HandlerMethodArgumentResolver>) {
