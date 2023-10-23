@@ -10,6 +10,7 @@ import jakarta.servlet.ServletRequest
 import jakarta.servlet.ServletResponse
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
@@ -19,6 +20,9 @@ import org.springframework.web.filter.GenericFilterBean
 class JwtAuthFilter(
     private val jwtAuthProvider: JwtAuthProvider
 ): GenericFilterBean() {
+
+    @Value("\${sub.server.night-saver-web.host}")
+    val nightSaverWebHost = ""
 
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
         val httpServletRequest = request as HttpServletRequest
@@ -62,6 +66,10 @@ class JwtAuthFilter(
 
         httpServletResponse.status = 200
         httpServletResponse.contentType = "application/json"
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", nightSaverWebHost)
+        httpServletResponse.setHeader("Access-Control-Allow-Methods", "*")
+        httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true")
+        httpServletResponse.setHeader("Access-Control-Max-Age", "3600")
 
         val outputStream = httpServletResponse.outputStream
 

@@ -9,6 +9,8 @@ sub:
   server:
     night-saver-image-server:
       host: http://192.168.45.194:55003
+    night-saver-web:
+      host: https://night-saver.sggnology.com
 
 springdoc:
   swagger-ui:
