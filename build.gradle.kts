@@ -1,3 +1,4 @@
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
@@ -7,6 +8,7 @@ plugins {
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
+    kotlin("kapt") version "1.8.22"
 }
 
 val buildImageName = "sggnology/night-saver-api"
@@ -56,6 +58,12 @@ dependencies {
     // thymeleaf
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    // query dsl
+    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+    kapt("jakarta.annotation:jakarta.annotation-api")
+    kapt("jakarta.persistence:jakarta.persistence-api")
 
 }
 
