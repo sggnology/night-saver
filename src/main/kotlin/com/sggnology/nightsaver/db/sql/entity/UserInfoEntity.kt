@@ -24,6 +24,10 @@ class UserInfoEntity {
     var userNick: String? = null
 
     @Basic
+    @Column(name = "car_plate_number")
+    var carPlateNumber: String? = null
+
+    @Basic
     @Column(name = "created_at")
     var createdAt: LocalDateTime = LocalDateTime.now()
 
