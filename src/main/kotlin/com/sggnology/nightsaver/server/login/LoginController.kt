@@ -28,8 +28,10 @@ class LoginController(
     fun login(
         @Valid @RequestBody loginReqDto: LoginReqDto
     ): ApiResult<String> {
-        val user = userInfoRepository.findByUserEmail(loginReqDto.userEmail) ?: throw Exception("존재하지 않는 계정입니다.")
-        customAssert(passwordEncoder.matches(loginReqDto.password, user.userPw), "비밀번호가 일치하지 않습니다.")
+        val user = userInfoRepository.findByUserEmail(loginReqDto.userEmail)
+
+        customAssert(user != null, "존재하지 않는 계정입니다.")
+        customAssert(passwordEncoder.matches(loginReqDto.password, user!!.userPw), "비밀번호가 일치하지 않습니다.")
 
         return ApiResult.success(jwtAuthProvider.createJwtToken(user.userId))
     }
