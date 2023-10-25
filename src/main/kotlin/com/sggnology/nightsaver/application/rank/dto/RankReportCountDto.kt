@@ -1,6 +1,6 @@
 package com.sggnology.nightsaver.application.rank.dto
 
 data class RankReportCountDto(
-    val carNumber: String,
+    val carPlateNumber: String,
     val count: Long
 )
