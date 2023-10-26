@@ -7,4 +7,5 @@ interface UserInfoRepository: JpaRepository<UserInfoEntity, Int> {
     fun findByUserId(userId: Int): UserInfoEntity?
     fun findByUserEmail(userEmail: String): UserInfoEntity?
     fun findByUserNick(userNick: String): UserInfoEntity?
+    fun findByCarPlateNumber(carPlateNumber: String): UserInfoEntity?
 }
