@@ -12,5 +12,5 @@ data class MyPageInfoUpdateReqDto(
         regexp = "^[0-9]{2,3}[가-힣]{1}[0-9]{4}$",
         message = "차량번호 형식이 올바르지 않습니다."
     )
-    val carPlateNumber: String? = null
+    val carPlateNumber: String
 )

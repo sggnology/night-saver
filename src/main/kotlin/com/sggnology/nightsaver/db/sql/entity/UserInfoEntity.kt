@@ -24,8 +24,8 @@ class UserInfoEntity {
     var userNick: String? = null
 
     @Basic
-    @Column(name = "car_plate_number")
-    var carPlateNumber: String? = null
+    @Column(name = "car_plate_number", unique = true)
+    lateinit var carPlateNumber: String
 
     @Basic
     @Column(name = "created_at")
