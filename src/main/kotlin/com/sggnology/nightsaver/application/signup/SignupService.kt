@@ -16,8 +16,10 @@ class SignupService(
     fun signup(
         signupReqDto: SignupReqDto
     ) {
-        val signup = Signup()
-        val newUser = signup.createNewUser(signupReqDto, passwordEncoder)
+
+        val signup = Signup(signupReqDto)
+        val newUser = signup.createNewUser(userInfoRepository, passwordEncoder)
+
         userInfoRepository.save(newUser)
     }
 }
