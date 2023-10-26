@@ -11,6 +11,7 @@ class Signup {
             this.userEmail = signupReqDto.userEmail
             this.userPw = passwordEncoder.encode(signupReqDto.password)
             this.userNick = signupReqDto.nickName
+            this.carPlateNumber = signupReqDto.carPlateNumber
         }
     }
 }
