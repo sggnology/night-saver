@@ -1,6 +1,5 @@
 package com.sggnology.nightsaver.server.signup
 
-import com.sggnology.nightsaver.application.account.AccountDuplicationService
 import com.sggnology.nightsaver.application.signup.SignupService
 import com.sggnology.nightsaver.application.signup.dto.req.SignupReqDto
 import com.sggnology.nightsaver.common.response.ApiResult
@@ -17,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/signup")
 @Tag(name = "회원가입", description = "회원가입 API")
 class SignupController(
-    private val signupService: SignupService,
-    private val accountDuplicationService: AccountDuplicationService
+    private val signupService: SignupService
 ) {
 
     @Operation(summary = "회원가입")
@@ -27,7 +25,6 @@ class SignupController(
         @Valid @RequestBody signupReqDto: SignupReqDto
     ): ApiResult<Nothing> {
         customAssert(signupReqDto.password == signupReqDto.passwordConfirm, "비밀번호가 일치하지 않습니다.")
-        customAssert(!accountDuplicationService.isUserNickDuplicated(signupReqDto.userEmail), "이미 존재하는 닉네임입니다.")
         signupService.signup(signupReqDto)
         return ApiResult.success()
     }
