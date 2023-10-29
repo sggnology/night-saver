@@ -2,7 +2,7 @@ package com.sggnology.nightsaver.application.push.token.register.dto
 
 import jakarta.validation.constraints.NotEmpty
 
-data class TokenRegisterReqDto(
+data class FcmTokenRegisterReqDto(
     @field:NotEmpty
-    val token: String
+    val fcmToken: String
 )
