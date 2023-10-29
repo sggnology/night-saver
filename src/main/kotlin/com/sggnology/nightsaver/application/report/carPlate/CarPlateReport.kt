@@ -4,6 +4,7 @@ import com.sggnology.nightsaver.db.sql.entity.CarPlateReportLogInfoEntity
 import com.sggnology.nightsaver.db.sql.entity.UserInfoEntity
 import com.sggnology.nightsaver.db.sql.repository.CarPlateReportLogInfoRepository
 import com.sggnology.nightsaver.exception.TimeExpiredException
+import com.sggnology.nightsaver.extension.customAssert
 import java.time.LocalDateTime
 
 class CarPlateReport(
@@ -14,11 +15,16 @@ class CarPlateReport(
 
     fun report(
         reporter: UserInfoEntity,
-        carPlate: String
+        carPlateNumber: String
     ) {
-        checkLastSentTime(carPlate)
 
-        registerLog(reporter, carPlate)
+        customAssert(reporter.carPlateNumber != carPlateNumber, """
+            자신의 차량번호는 신고할 수 없습니다.
+        """.trimIndent())
+
+        checkLastSentTime(carPlateNumber)
+
+        registerLog(reporter, carPlateNumber)
     }
 
     private fun checkLastSentTime(carPlate: String){
