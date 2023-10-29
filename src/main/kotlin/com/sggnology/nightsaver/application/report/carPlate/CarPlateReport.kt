@@ -16,7 +16,12 @@ class CarPlateReport(
         reporter: UserInfoEntity,
         carPlate: String
     ) {
+        checkLastSentTime(carPlate)
 
+        registerLog(reporter, carPlate)
+    }
+
+    private fun checkLastSentTime(carPlate: String){
         val standardTime = LocalDateTime.now().minusMinutes(REPORT_LOG_RETENTION_PERIOD)
 
         val lastReportedAt = carPlateReportLogInfoRepository.getLastCarPlateReportLog(
@@ -31,8 +36,6 @@ class CarPlateReport(
                 """.trimIndent()
             )
         }
-
-        registerLog(reporter, carPlate)
     }
 
     private fun registerLog(
