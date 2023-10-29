@@ -33,7 +33,8 @@ class ReportSender(
         fcmSender.sendMulticastAsync(
             FcmMessageDto(
                 title = "신고가 접수되었습니다.",
-                message = "차량번호 : ${user.carPlateNumber} 에 대해 신고가 접수되었습니다.",
+                message = "차량번호 : ${user.carPlateNumber} 에 대한 신고가 접수되어 알림을 드립니다.",
+                imageUrl = "https://night-saver.sggnology.com/night-saver-logo.webp",
                 tokens = listOf(fcmToken)
             )
         )
