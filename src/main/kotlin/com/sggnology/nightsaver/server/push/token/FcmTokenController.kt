@@ -2,6 +2,7 @@ package com.sggnology.nightsaver.server.push.token
 
 import com.sggnology.nightsaver.application.push.token.register.FcmTokenRegisterService
 import com.sggnology.nightsaver.application.push.token.register.dto.FcmTokenRegisterReqDto
+import com.sggnology.nightsaver.common.response.ApiResult
 import com.sggnology.nightsaver.db.sql.entity.UserInfoEntity
 import com.sggnology.nightsaver.resolver.annotation.UserInfo
 import io.swagger.v3.oas.annotations.Operation
@@ -26,7 +27,8 @@ class FcmTokenController(
     fun registerToken(
         @UserInfo user: UserInfoEntity,
         @RequestBody fcmTokenRegisterReqDto: FcmTokenRegisterReqDto
-    ) {
+    ): ApiResult<Nothing> {
         fcmTokenRegisterService.register(user, fcmTokenRegisterReqDto)
+        return ApiResult.success()
     }
 }
