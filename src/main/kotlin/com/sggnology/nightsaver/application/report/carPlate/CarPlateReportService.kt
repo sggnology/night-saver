@@ -18,12 +18,12 @@ class CarPlateReportService(
     @Transactional
     fun report(
         reporter: UserInfoEntity,
-        carPlate: String
+        carPlateNumber: String
     ){
         val carPlateReport = CarPlateReport(carPlateReportLogInfoRepository)
-        carPlateReport.report(reporter, carPlate)
+        carPlateReport.report(reporter, carPlateNumber)
         val reportSender = ReportSender(userInfoRepository, fcmSender)
-        reportSender.send(carPlate)
+        reportSender.send(carPlateNumber)
         userInfoRepository.save(reporter)
     }
 }

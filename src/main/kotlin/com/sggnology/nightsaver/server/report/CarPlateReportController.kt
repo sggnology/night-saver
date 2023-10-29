@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping(("/api/v1/report/car-plate"))
+@RequestMapping(("/api/v1/report/car-plate-number"))
 @Validated
 @Tag(name = "차량번호 신고 API", description = "차량번호 신고 관리는 여기서 합니다.")
 class CarPlateReportController(
@@ -31,9 +31,9 @@ class CarPlateReportController(
             regexp = "^[0-9]{2,3}[가-힣]{1}[0-9]{4}$",
             message = "차량번호 형식이 올바르지 않습니다."
         )
-        @RequestParam carPlate: String
+        @RequestParam carPlateNumber: String
     ): ApiResult<Nothing> {
-        carPlateReportService.report(reporter = user, carPlate = carPlate)
+        carPlateReportService.report(reporter = user, carPlateNumber = carPlateNumber)
         return ApiResult.success()
     }
 }
