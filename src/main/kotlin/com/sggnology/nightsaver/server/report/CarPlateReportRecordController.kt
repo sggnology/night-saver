@@ -33,8 +33,8 @@ class CarPlateReportRecordController(
         )
     }
 
-    @Operation(summary = "신고 레코드 조회")
-    @GetMapping("")
+    @Operation(summary = "사용자 신고 레코드 조회")
+    @GetMapping("/user")
     fun userRecords(
         @UserInfo reporter: UserInfoEntity,
         @RequestParam page: Int,
