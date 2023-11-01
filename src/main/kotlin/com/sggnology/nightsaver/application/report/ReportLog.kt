@@ -11,7 +11,7 @@ class ReportLog {
     ) {
         reporter.carPlateReportLogInfoEntityList.add(
             CarPlateReportLogInfoEntity().apply {
-                this.reportUserIdx = reporter.userId
+                this.reportUserId = reporter.userId
                 this.carPlate = carPlateNumber
             }
         )

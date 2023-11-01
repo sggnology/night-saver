@@ -12,11 +12,11 @@ class CarPlateReportLogInfoEntity {
     var carPlateReportLogId = 0
 
     @Basic
-    @Column(name = "report_user_idx")
-    var reportUserIdx = 0
+    @Column(name = "report_user_id")
+    var reportUserId = 0
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "report_user_idx", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "report_user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     lateinit var reportUser: UserInfoEntity
 
     @Basic

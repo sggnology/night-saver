@@ -19,12 +19,12 @@ interface CarPlateReportLogInfoRepository: JpaRepository<CarPlateReportLogInfoEn
         """
         select cprli from CarPlateReportLogInfoEntity cprli
         join fetch cprli.reportUser
-        where (:reporterUserIdx is null or cprli.reportUserIdx = :reporterUserId)
+        where (:reportUserId is null or cprli.reportUserId = :reportUserId)
         order by cprli.createdAt desc
     """
     )
     fun getPage(
-        reporterUserId: Int?,
+        reportUserId: Int?,
         pageable: Pageable
     ): Page<CarPlateReportLogInfoEntity>
 }
