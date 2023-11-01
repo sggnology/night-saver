@@ -3,7 +3,9 @@ package com.sggnology.nightsaver.server.report
 import com.sggnology.nightsaver.application.report.ReportRecord
 import com.sggnology.nightsaver.application.report.dto.res.ReportRecordResDto
 import com.sggnology.nightsaver.common.response.ApiResult
+import com.sggnology.nightsaver.db.sql.entity.UserInfoEntity
 import com.sggnology.nightsaver.db.sql.repository.CarPlateReportLogInfoRepository
+import com.sggnology.nightsaver.resolver.annotation.UserInfo
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.data.domain.Page
@@ -21,14 +23,26 @@ class CarPlateReportRecordController(
 
     @Operation(summary = "신고 레코드 조회")
     @GetMapping("")
-    fun totalLog(
-        @RequestParam reporter: Int? = null,
+    fun totalRecords(
         @RequestParam page: Int,
         @RequestParam size: Int
     ): ApiResult<Page<ReportRecordResDto>> {
         val reportRecord = ReportRecord(carPlateReportLogInfoRepository)
         return ApiResult.success(
-            reportRecord.getPagedRecords(page, size)
+            reportRecord.getPagedRecords(null, page, size)
+        )
+    }
+
+    @Operation(summary = "신고 레코드 조회")
+    @GetMapping("")
+    fun userRecords(
+        @UserInfo reporter: UserInfoEntity,
+        @RequestParam page: Int,
+        @RequestParam size: Int
+    ): ApiResult<Page<ReportRecordResDto>> {
+        val reportRecord = ReportRecord(carPlateReportLogInfoRepository)
+        return ApiResult.success(
+            reportRecord.getPagedRecords(reporter, page, size)
         )
     }
 }

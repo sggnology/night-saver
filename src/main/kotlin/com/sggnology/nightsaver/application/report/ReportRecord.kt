@@ -1,6 +1,7 @@
 package com.sggnology.nightsaver.application.report
 
 import com.sggnology.nightsaver.application.report.dto.res.ReportRecordResDto
+import com.sggnology.nightsaver.db.sql.entity.UserInfoEntity
 import com.sggnology.nightsaver.db.sql.repository.CarPlateReportLogInfoRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -13,13 +14,14 @@ class ReportRecord(
     private val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
     fun getPagedRecords(
+        reporter: UserInfoEntity?,
         page: Int,
         size: Int,
     ): Page<ReportRecordResDto> {
         val pageRequest = PageRequest.of(page, size)
 
         return carPlateReportLogInfoRepository
-            .getPage(null, pageRequest)
+            .getPage(reporter?.userId, pageRequest)
             .map {
                 ReportRecordResDto(
                     dateTimeFormatter.format(it.createdAt),
