@@ -1,4 +1,4 @@
-package com.sggnology.nightsaver.server.rank
+package com.sggnology.nightsaver.server.report
 
 import com.sggnology.nightsaver.application.rank.RankReportService
 import com.sggnology.nightsaver.application.rank.dto.RankReportCountDto
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/v1/rank/report")
+@RequestMapping("/api/v1/report/rank")
 @Tag(name = "신고 랭킹 API")
-class RankReportController(
+class CarPlateReportRankController(
     private val rankReportService: RankReportService
 ) {
 
