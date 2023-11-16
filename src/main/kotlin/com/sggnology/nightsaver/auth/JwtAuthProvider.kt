@@ -55,8 +55,8 @@ class JwtAuthProvider {
             .compact()
     }
 
-    fun getAuthentication(token: String): Authentication {
-        val claims = Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).body
+    fun getAuthentication(accessToken: String): Authentication {
+        val claims = Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(accessToken).body
         val userId = claims.subject
 
         val user = User(userId, "", listOf(getUserRole()))
