@@ -18,5 +18,9 @@ springdoc:
 
 auth:
   jwt:
-    secret-key: gkdnfdlrnldudnjwlsWksjehdkfwlabc
-    expire-seconds: 3600000
+    access-token:
+      secret-key: gkdnfdlrnldudnjwlsWksjehdkfwlabc
+      expire-seconds: 86400 # 24 hours
+    refresh-token:
+      secret-key: gkdnfdlrnldudnjwlsWksjehdkfwlcba
+      expire-seconds: 2592000 # 30 days
