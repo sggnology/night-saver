@@ -32,7 +32,7 @@ class JwtAuthFilter(
         if(accessToken != null){
 
             try{
-                jwtAuthProvider.validateToken(accessToken)
+                jwtAuthProvider.validateAccessToken(accessToken)
             }
             catch (e: Exception){
                 exceptionHandle(response, e)
