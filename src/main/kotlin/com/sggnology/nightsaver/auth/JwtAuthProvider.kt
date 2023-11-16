@@ -36,7 +36,15 @@ class JwtAuthProvider {
         jwtSecret = Keys.hmacShaKeyFor(jwtSecretKey.toByteArray())
     }
 
-    fun createJwtToken(userId: Int): String {
+    fun createAccessToken(userId: Int): String {
+        return Jwts.builder()
+            .setSubject(userId.toString())
+            .setExpiration(Date(System.currentTimeMillis() + JWT_EXPIRE_SECONDS))
+            .signWith(jwtSecret)
+            .compact()
+    }
+
+    fun createRefreshToken(userId: Int): String {
         return Jwts.builder()
             .setSubject(userId.toString())
             .setExpiration(Date(System.currentTimeMillis() + JWT_EXPIRE_SECONDS))

@@ -40,7 +40,7 @@ class AHelloController(
 
     @GetMapping("/generate/jwt-token")
     fun generateTestJwtToken(): String {
-        return jwtAuthProvider.createJwtToken(1)
+        return jwtAuthProvider.createAccessToken(1)
     }
 
     @GetMapping("/send-email")

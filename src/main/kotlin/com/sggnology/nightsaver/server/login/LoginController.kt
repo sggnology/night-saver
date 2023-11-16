@@ -33,6 +33,6 @@ class LoginController(
         customAssert(user != null, "존재하지 않는 계정입니다.")
         customAssert(passwordEncoder.matches(loginReqDto.password, user!!.userPw), "비밀번호가 일치하지 않습니다.")
 
-        return ApiResult.success(jwtAuthProvider.createJwtToken(user.userId))
+        return ApiResult.success(jwtAuthProvider.createAccessToken(user.userId))
     }
 }
