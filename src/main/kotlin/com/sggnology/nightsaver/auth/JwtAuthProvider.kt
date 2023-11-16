@@ -87,6 +87,9 @@ class JwtAuthProvider {
         } catch (e: MalformedJwtException) {
             // 잘못된 JWT 서명입니다.
             throw AuthWrongJwtSigningException()
+        } catch (e: SignatureException) {
+            // 잘못된 JWT 서명입니다.
+            throw AuthWrongJwtSigningException()
         } catch (e: ExpiredJwtException) {
             // 만료된 JWT 토큰입니다.
             throw AuthExpiredJwtException()
