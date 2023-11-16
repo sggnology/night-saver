@@ -27,7 +27,10 @@ class JwtAuthProvider {
     private val jwtSecretKey: String = ""
 
     @Value("\${auth.jwt.expire-seconds}")
-    private val JWT_EXPIRE_SECONDS: Int = 1000 * 60 * 60 * 24
+    private val ACCESS_TOKEN_EXPIRE_SECONDS: Int = 1000 * 60 * 60 * 24
+
+    @Value("\${auth.jwt.expire-seconds}")
+    private val REFRESH_TOKEN_EXPIRE_SECONDS: Int = 1000 * 60 * 60 * 24 * 30
 
     private lateinit var jwtSecret: SecretKey
 
@@ -39,7 +42,7 @@ class JwtAuthProvider {
     fun createAccessToken(userId: Int): String {
         return Jwts.builder()
             .setSubject(userId.toString())
-            .setExpiration(Date(System.currentTimeMillis() + JWT_EXPIRE_SECONDS))
+            .setExpiration(Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRE_SECONDS))
             .signWith(jwtSecret)
             .compact()
     }
@@ -47,7 +50,7 @@ class JwtAuthProvider {
     fun createRefreshToken(userId: Int): String {
         return Jwts.builder()
             .setSubject(userId.toString())
-            .setExpiration(Date(System.currentTimeMillis() + JWT_EXPIRE_SECONDS))
+            .setExpiration(Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRE_SECONDS))
             .signWith(jwtSecret)
             .compact()
     }
