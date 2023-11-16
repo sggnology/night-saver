@@ -99,6 +99,9 @@ class JwtAuthProvider {
         } catch (e: IllegalArgumentException) {
             // JWT 토큰이 잘못되었습니다.
             throw AuthIllegalJwtException()
+        } catch (e: Exception) {
+            // JWT 토큰이 잘못되었습니다.
+            throw AuthIllegalJwtException()
         }
     }
 }
