@@ -27,19 +27,19 @@ class JwtAuthFilter(
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
         val httpServletRequest = request as HttpServletRequest
 
-        val jwtToken = httpServletRequest.getHeader("Authorization")
+        val accessToken = httpServletRequest.getHeader("Authorization")
 
-        if(jwtToken != null){
+        if(accessToken != null){
 
             try{
-                jwtAuthProvider.validateToken(jwtToken)
+                jwtAuthProvider.validateToken(accessToken)
             }
             catch (e: Exception){
                 exceptionHandle(response, e)
                 return
             }
 
-            SecurityContextHolder.getContext().authentication = jwtAuthProvider.getAuthentication(jwtToken)
+            SecurityContextHolder.getContext().authentication = jwtAuthProvider.getAuthentication(accessToken)
         }
 
         chain.doFilter(request, response)
