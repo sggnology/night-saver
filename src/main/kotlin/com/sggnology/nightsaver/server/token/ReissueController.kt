@@ -26,7 +26,7 @@ class ReissueController(
     ): ApiResult<ReissueAccessTokenResDto> {
 
         val refreshToken = reissueAccessTokenReqDto.refreshToken
-        jwtAuthProvider.validateAccessToken(refreshToken)
+        jwtAuthProvider.validateRefreshToken(refreshToken)
 
         val userId = jwtAuthProvider.getUserIdFromRefreshToken(refreshToken)
 
