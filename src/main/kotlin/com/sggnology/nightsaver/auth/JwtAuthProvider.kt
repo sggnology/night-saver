@@ -15,13 +15,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.User
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.annotation.PostConstruct
 import javax.crypto.SecretKey
-import org.springframework.security.core.userdetails.User
-import java.time.LocalDateTime
-import java.time.ZoneId
 
 @Service
 class JwtAuthProvider {
@@ -50,7 +48,7 @@ class JwtAuthProvider {
     fun createAccessToken(userId: Int): String {
         return Jwts.builder()
             .setSubject(userId.toString())
-            .setExpiration(Date(tzEpoch() + ACCESS_TOKEN_EXPIRE_SECONDS))
+            .setExpiration(Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRE_SECONDS))
             .signWith(accessTokenSecret)
             .compact()
     }
@@ -58,13 +56,9 @@ class JwtAuthProvider {
     fun createRefreshToken(userId: Int): String {
         return Jwts.builder()
             .setSubject(userId.toString())
-            .setExpiration(Date(tzEpoch() + REFRESH_TOKEN_EXPIRE_SECONDS))
+            .setExpiration(Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRE_SECONDS))
             .signWith(refreshTokenSecret)
             .compact()
-    }
-
-    private fun tzEpoch(): Long {
-        return LocalDateTime.now().atZone(ZoneId.of("Asia/Seoul")).toEpochSecond() * 1000
     }
 
     fun getAuthentication(accessToken: String): Authentication {
