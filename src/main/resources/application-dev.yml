@@ -20,10 +20,10 @@ auth:
   jwt:
     access-token:
       secret-key: gkdnfdlrnldudnjwlsWksjehdkfwlabc
-      expire-seconds: 86400 # 24 hours
+      expire-seconds: 86400000 # 24 hours
     refresh-token:
       secret-key: gkdnfdlrnldudnjwlsWksjehdkfwlcba
-      expire-seconds: 2592000 # 30 days
+      expire-seconds: 2592000000 # 30 days
 
 #logging:
 #  level:

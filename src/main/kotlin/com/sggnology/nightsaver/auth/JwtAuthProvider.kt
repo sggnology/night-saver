@@ -31,10 +31,10 @@ class JwtAuthProvider {
     private val refreshTokenSecretKey: String = ""
 
     @Value("\${auth.jwt.access-token.expire-seconds}")
-    private val ACCESS_TOKEN_EXPIRE_SECONDS: Int = 60 * 60 * 24
+    private val ACCESS_TOKEN_EXPIRE_SECONDS: Long = 1000L * 60 * 60 * 24
 
     @Value("\${auth.jwt.refresh-token.expire-seconds}")
-    private val REFRESH_TOKEN_EXPIRE_SECONDS: Int = 60 * 60 * 24 * 30
+    private val REFRESH_TOKEN_EXPIRE_SECONDS: Long = 1000L * 60 * 60 * 24 * 30
 
     private lateinit var accessTokenSecret: SecretKey
     private lateinit var refreshTokenSecret: SecretKey
