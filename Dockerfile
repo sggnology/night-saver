@@ -4,6 +4,6 @@ WORKDIR /app
 
 CMD ["./gradlew", "clean", "bootJar"]
 
-COPY build/libs/*.jar app.jar
+COPY build/libs/**.jar app.jar
 
 CMD ["java", "-jar", "app.jar"]
