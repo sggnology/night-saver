@@ -1,9 +1,17 @@
-FROM openjdk:17
+FROM openjdk:17-jdk-alpine as GRADLE_BUILD
 
 WORKDIR /app
 
-CMD ["./gradlew", "clean", "bootJar"]
+COPY . /app
 
-COPY build/libs/*.jar app.jar
+RUN chmod +x ./gradlew
+RUN ./gradlew clean
+RUN ./gradlew bootjar
 
-CMD ["java", "-jar", "app.jar"]
+FROM openjdk:17-jdk-alpine
+
+WORKDIR /app
+
+COPY --from=GRADLE_BUILD /app/build/libs/*.jar /app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
